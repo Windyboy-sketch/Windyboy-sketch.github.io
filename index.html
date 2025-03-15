@@ -2,107 +2,132 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>✨ SCHIZOGRAMS & FESTERS LAND OF WONDER ✨</title>
+    <title>✨ FEED BOBBY ‘TIL HE POPS ✨</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=UnifrakturCook&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1 class="glitch" data-text="SCHIZOGRAMS & FESTERS LAND OF WONDER">✨ SCHIZOGRAMS & FESTERS LAND OF WONDER ✨</h1>
-    <marquee behavior="scroll" direction="left" class="marquee">💿 FUUUUCK 💿 CH@OS 💿 D13 💿</marquee>
-
-    <div id="feedback-display" class="chaos-zone"></div>
-    <form id="feedback-form">
-        <textarea id="feedback-input" rows="4" placeholder="SCREAMMMM"></textarea>
-        <button type="submit" class="btn">F1R3</button>
-    </form>
-
-    <div id="chat-display" class="chaos-zone"></div>
-    <form id="chat-form">
-        <input type="text" id="chat-input" placeholder="CH@T D13" autocomplete="off">
-        <button type="submit" class="btn">BL@ST</button>
-    </form>
-
-    <button id="bobby-btn" class="bobby">B0BBY</button>
-
-    <div class="sad-zone">
-        <h2 class="sad-title glitch" data-text="WASTELAND">☩ WASTELAND ☩</h2>
-        <p class="sad-text">bobby wins. u lose.</p>
-        <img src="bobby.jpg" alt="Bobby" class="sad-bobby">
+    <div class="game-container">
+        <h1 class="glitch" data-text="FEED BOBBY ‘TIL HE POPS">✨ FEED BOBBY ‘TIL HE POPS ✨</h1>
+        <div id="arena">
+            <img id="bobby" src="bobby.jpg" alt="Bobby" class="bobby">
+            <div id="burgers"></div>
+            <div id="gore" class="gore hidden"></div>
+        </div>
+        <div class="stats">
+            <span id="burger-count">BURG3RS: 0</span>
+        </div>
+        <div id="message" class="message"></div>
+        <button id="restart" class="btn hidden">R3ST@RT</button>
     </div>
 
-    <div class="cursor"></div>
-    <div class="bobby-spam"></div>
-
     <script>
+        const arena = document.getElementById('arena');
+        const bobby = document.getElementById('bobby');
+        const burgersDiv = document.getElementById('burgers');
+        const gore = document.getElementById('gore');
+        const burgerCountDisplay = document.getElementById('burger-count');
+        const message = document.getElementById('message');
+        const restartBtn = document.getElementById('restart');
+
+        // Game state
+        let burgerCount = 0;
+        let bobbySize = 100; // Starting width/height in px
+        let gameActive = true;
+
         // Glitch text
         function glitchText(text) {
-            return text.split('').map(c => Math.random() > 0.7 ? c.toUpperCase() + String.fromCharCode(33 + Math.floor(Math.random() * 94)) : c).join('');
+            return text.split('').map(c => Math.random() > 0.8 ? c.toUpperCase() + String.fromCharCode(33 + Math.floor(Math.random() * 10)) : c).join('');
         }
 
-        // Load Feedback
-        function loadFeedback() {
-            const feedback = JSON.parse(localStorage.getItem('feedback') || '[]');
-            document.getElementById('feedback-display').innerHTML = feedback.map(f => `<p class="glow chaos-text">${glitchText(f)}</p>`).join('');
+        // Throw burger
+        function throwBurger(x, y) {
+            if (!gameActive) return;
+
+            const burger = document.createElement('img');
+            burger.src = 'burger.png';
+            burger.className = 'burger';
+            burger.style.left = x + 'px';
+            burger.style.top = y + 'px';
+            burgersDiv.appendChild(burger);
+
+            // Animate burger to Bobby
+            const bobbyRect = bobby.getBoundingClientRect();
+            const targetX = bobbyRect.left + bobbyRect.width / 2 - 25; // Center of Bobby
+            const targetY = bobbyRect.top + bobbyRect.height / 2 - 25;
+            let posX = x;
+            let posY = y;
+
+            function animateBurger() {
+                if (Math.abs(posX - targetX) > 5 || Math.abs(posY - targetY) > 5) {
+                    posX += (targetX - posX) * 0.1;
+                    posY += (targetY - posY) * 0.1;
+                    burger.style.left = posX + 'px';
+                    burger.style.top = posY + 'px';
+                    requestAnimationFrame(animateBurger);
+                } else {
+                    burgersDiv.removeChild(burger);
+                    feedBobby();
+                }
+            }
+            animateBurger();
         }
 
-        // Load Chat
-        function loadChat() {
-            const chat = JSON.parse(localStorage.getItem('chat') || '[]');
-            document.getElementById('chat-display').innerHTML = chat.map(c => `<p class="glow chaos-text">${glitchText(c)}</p>`).join('');
+        // Feed Bobby
+        function feedBobby() {
+            burgerCount++;
+            burgerCountDisplay.textContent = `BURG3RS: ${burgerCount}`;
+            bobbySize += 10; // Grow fatter
+            bobby.style.width = bobbySize + 'px';
+            bobby.style.height = bobbySize + 'px';
+            bobby.style.left = `calc(50% - ${bobbySize / 2}px)`;
+            bobby.style.top = `calc(50% - ${bobbySize / 2}px)`;
+
+            if (burgerCount >= 50) {
+                explodeBobby();
+            }
         }
 
-        // Submit Feedback
-        document.getElementById('feedback-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const feedbackInput = document.getElementById('feedback-input').value;
-            const feedback = JSON.parse(localStorage.getItem('feedback') || '[]');
-            feedback.push(feedbackInput);
-            localStorage.setItem('feedback', JSON.stringify(feedback));
-            document.getElementById('feedback-input').value = '';
-            loadFeedback();
+        // Explode Bobby
+        function explodeBobby() {
+            gameActive = false;
+            bobby.classList.add('hidden');
+            gore.classList.remove('hidden');
+            message.textContent = "B0BBY P0PP3D! G0R3 F3ST!";
+            restartBtn.classList.remove('hidden');
+            burgersDiv.innerHTML = ''; // Clear burgers
+        }
+
+        // Restart game
+        restartBtn.addEventListener('click', () => {
+            burgerCount = 0;
+            bobbySize = 100;
+            burgerCountDisplay.textContent = `BURG3RS: 0`;
+            bobby.style.width = bobbySize + 'px';
+            bobby.style.height = bobbySize + 'px';
+            bobby.style.left = `calc(50% - ${bobbySize / 2}px)`;
+            bobby.style.top = `calc(50% - ${bobbySize / 2}px)`;
+            bobby.classList.remove('hidden');
+            gore.classList.add('hidden');
+            message.textContent = '';
+            restartBtn.classList.add('hidden');
+            gameActive = true;
         });
 
-        // Submit Chat
-        document.getElementById('chat-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const message = document.getElementById('chat-input').value;
-            const chat = JSON.parse(localStorage.getItem('chat') || '[]');
-            chat.push(message);
-            localStorage.setItem('chat', JSON.stringify(chat));
-            document.getElementById('chat-input').value = '';
-            loadChat();
+        // Click to throw burger
+        arena.addEventListener('click', (e) => {
+            const rect = arena.getBoundingClientRect();
+            const x = e.clientX - rect.left - 25; // Adjust for burger size
+            const y = e.clientY - rect.top - 25;
+            throwBurger(x, y);
         });
 
-        // Bobby Button
-        document.getElementById('bobby-btn').addEventListener('click', () => {
-            const fakeIP = `192.168.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
-            const chat = JSON.parse(localStorage.getItem('chat') || '[]');
-            chat.push(`💀 B0BBY ${fakeIP} 💀`);
-            localStorage.setItem('chat', JSON.stringify(chat));
-            loadChat();
-        });
-
-        // Chaos loop
+        // Glitch loop
         setInterval(() => {
-            loadFeedback();
-            loadChat();
             document.querySelectorAll('.glitch').forEach(el => {
                 el.textContent = glitchText(el.getAttribute('data-text'));
             });
-            const spam = document.querySelector('.bobby-spam');
-            spam.innerHTML = Array(20).fill().map((_, i) => `<img src="bobby.jpg" class="bobby-clone" style="top: ${Math.random() * 100}%; left: ${Math.random() * 100}%; transform: rotate(${Math.random() * 360}deg); animation-delay: ${Math.random()}s;">`).join('');
         }, 200);
-
-        // Initial load
-        loadFeedback();
-        loadChat();
-
-        // Cursor
-        document.addEventListener('mousemove', (e) => {
-            const cursor = document.querySelector('.cursor');
-            cursor.style.left = e.pageX + 'px';
-            cursor.style.top = e.pageY + 'px';
-        });
     </script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 body {
-    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff0000, #00ff00, #ffff00, #ff00ff);
-    background-size: 800% 800%;
-    animation: flashHell 0.1s infinite;
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff0000, #00ff00);
+    background-size: 400% 400%;
+    animation: gradient 5s ease infinite;
     font-family: 'Press Start 2P', cursive;
     color: #fff;
     margin: 0;
@@ -9,205 +9,98 @@ body {
     overflow: hidden;
 }
 
-@keyframes flashHell {
-    0% { background-position: 0% 50%; filter: brightness(100%); }
-    25% { background-position: 25% 75%; filter: brightness(150%); }
-    50% { background-position: 50% 25%; filter: brightness(200%); }
-    75% { background-position: 75% 50%; filter: brightness(150%); }
-    100% { background-position: 100% 75%; filter: brightness(100%); }
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.game-container {
+    text-align: center;
+    padding: 20px;
 }
 
 h1.glitch {
-    font-size: 48px;
-    text-align: center;
-    text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #ff0000;
-    animation: glitchFlash 0.1s infinite, shake 0.05s infinite;
+    font-size: 36px;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff;
+    animation: glitch 0.5s infinite;
 }
 
-.marquee {
-    font-size: 30px;
-    color: #ffff00;
-    padding: 15px;
-    border: 8px double #ff00ff;
-    animation: flicker 0.05s infinite;
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    60% { transform: translate(-2px, -2px); }
+    80% { transform: translate(2px, 2px); }
+    100% { transform: translate(0); }
 }
 
-.chaos-zone {
+#arena {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    margin: 20px auto;
+    border: 5px solid #ffff00;
+    background: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.bobby {
     position: absolute;
-    top: 20%;
-    left: 10%;
-    width: 80%;
+    left: calc(50% - 50px);
+    top: calc(50% - 50px);
+    width: 100px;
+    height: 100px;
+    transition: all 0.2s ease-out;
     z-index: 1;
 }
 
-.glow {
-    text-shadow: 0 0 15px #ffff00, 0 0 30px #ff00ff, 0 0 45px #00ffff;
-}
-
-.chaos-text {
-    position: relative;
-    font-size: 18px;
-    animation: textChaos 0.05s infinite;
-}
-
-@keyframes textChaos {
-    0% { transform: translate(0, 0) skew(0deg); opacity: 1; }
-    25% { transform: translate(-5px, 5px) skew(10deg); opacity: 0.5; }
-    50% { transform: translate(5px, -5px) skew(-10deg); opacity: 0.8; }
-    75% { transform: translate(-5px, -5px) skew(5deg); opacity: 0.6; }
-    100% { transform: translate(0, 0) skew(0deg); opacity: 1; }
-}
-
-@keyframes glitchFlash {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.1) skew(15deg); opacity: 0.3; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes shake {
-    0% { transform: translate(0, 0); }
-    25% { transform: translate(5px, -5px); }
-    50% { transform: translate(-5px, 5px); }
-    75% { transform: translate(5px, 5px); }
-    100% { transform: translate(0, 0); }
-}
-
-@keyframes flicker {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-textarea, input {
-    background: none;
-    color: #fff;
-    border: 6px solid #ff0000;
-    padding: 20px;
-    font-family: 'Press Start 2P', cursive;
-    width: 50%;
+.burger {
     position: absolute;
-    top: 50%;
-    left: 25%;
+    width: 50px;
+    height: 50px;
     z-index: 2;
-    animation: inputFlash 0.1s infinite;
 }
 
-input { top: 70%; }
+.gore {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.8), rgba(139, 0, 0, 0.5));
+    z-index: 3;
+}
 
-@keyframes inputFlash {
-    0% { border-color: #ff0000; opacity: 1; }
-    33% { border-color: #00ffff; opacity: 0.5; }
-    66% { border-color: #ffff00; opacity: 0.8; }
-    100% { border-color: #ff0000; opacity: 1; }
+.hidden {
+    display: none;
+}
+
+.stats {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.message {
+    font-size: 28px;
+    color: #ff0000;
+    text-shadow: 0 0 10px #ffff00;
+    margin: 20px 0;
 }
 
 .btn {
     background: #ff00ff;
     color: #fff;
-    border: 6px solid #00ffff;
-    padding: 20px 30px;
-    font-size: 16px;
-    position: absolute;
-    top: 60%;
-    left: 80%;
-    z-index: 2;
-    animation: btnFlash 0.1s infinite;
+    border: 4px solid #00ffff;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-family: 'Press Start 2P', cursive;
+    cursor: pointer;
+    animation: btnFlash 0.5s infinite;
 }
-
-#chat-form .btn { top: 80%; }
 
 @keyframes btnFlash {
-    0% { background: #ff00ff; transform: rotate(0deg); }
-    33% { background: #00ff00; transform: rotate(15deg); }
-    66% { background: #ffff00; transform: rotate(-15deg); }
-    100% { background: #ff00ff; transform: rotate(0deg); }
-}
-
-.bobby {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #ffff00;
-    color: #ff0000;
-    border: 8px dashed #00ffff;
-    padding: 15px 20px;
-    font-size: 14px;
-    animation: bobbyFreak 0.1s infinite;
-}
-
-@keyframes bobbyFreak {
-    0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
-    25% { transform: translate(-10px, -10px) rotate(20deg); opacity: 0.5; }
-    50% { transform: translate(10px, 10px) rotate(-20deg); opacity: 0.8; }
-    75% { transform: translate(-10px, 10px) rotate(15deg); opacity: 0.3; }
-    100% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
-}
-
-.bobby-clone {
-    position: absolute;
-    width: 50px;
-    z-index: 0;
-    animation: bobbySpam 0.2s infinite;
-}
-
-@keyframes bobbySpam {
-    0% { transform: scale(1) rotate(0deg); opacity: 1; }
-    50% { transform: scale(1.5) rotate(180deg); opacity: 0.2; }
-    100% { transform: scale(1) rotate(360deg); opacity: 1; }
-}
-
-.cursor {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    background: url('spin.gif') no-repeat;
-    background-size: contain;
-    pointer-events: none;
-    z-index: 9999;
-    animation: cursorFreak 0.1s infinite;
-}
-
-@keyframes cursorFreak {
-    0% { transform: translate(-50%, -50%) scale(1); }
-    50% { transform: translate(-50%, -50%) scale(2) rotate(360deg); }
-    100% { transform: translate(-50%, -50%) scale(1); }
-}
-
-.sad-zone {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 30px;
-    font-family: 'UnifrakturCook', cursive;
-    color: #666;
-    animation: sadFlash 0.2s infinite;
-}
-
-.sad-title {
-    font-size: 36px;
-    text-shadow: 0 0 15px #333;
-}
-
-.sad-text {
-    font-size: 24px;
-    margin: 30px 0;
-}
-
-.sad-bobby {
-    width: 300px;
-    border: 8px solid #444;
-    filter: grayscale(100%) brightness(30%);
-    animation: sadFreak 0.1s infinite;
-}
-
-@keyframes sadFlash {
-    0% { background: #111; opacity: 1; }
-    50% { background: #333; opacity: 0.5; }
-    100% { background: #111; opacity: 1; }
-}
-
-@keyframes sadFreak {
-    0% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(-10px, 10px) scale(1.2); }
-    100% { transform: translate(0, 0) scale(1); }
+    0% { background: #ff00ff; }
+    50% { background: #00ff00; }
+    100% { background: #ff00ff; }
 }
