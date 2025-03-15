@@ -7,43 +7,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=UnifrakturCook&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1 class="glitch" data-text="SCHIZOGRAMS & FESTERS LAND OF WONDER">✨ SCHIZOGRAMS & FESTERS LAND OF WONDER ✨</h1>
-        <marquee behavior="scroll" direction="left" class="marquee">💿 CH@OS RUL3Z 💿 GL1TCH TH3 SYST3M 💿 FUCK IT ALL 💿</marquee>
+    <h1 class="glitch" data-text="SCHIZOGRAMS & FESTERS LAND OF WONDER">✨ SCHIZOGRAMS & FESTERS LAND OF WONDER ✨</h1>
+    <marquee behavior="scroll" direction="left" class="marquee">💿 FUUUUCK 💿 CH@OS 💿 D13 💿</marquee>
 
-        <div id="feedback" class="box chaos-box">
-            <h2 class="blink glitch" data-text="SCHIZO FEEDBACK">📢 SCHIZO FEEDBACK 📢</h2>
-            <div id="feedback-display" class="scroll-box"></div>
-            <form id="feedback-form">
-                <textarea id="feedback-input" rows="4" placeholder="SCR3AM INTO TH3 V01D"></textarea><br>
-                <button type="submit" class="btn chaos-btn">F1R3 🔥</button>
-            </form>
-        </div>
+    <div id="feedback-display" class="chaos-zone"></div>
+    <form id="feedback-form">
+        <textarea id="feedback-input" rows="4" placeholder="SCREAMMMM"></textarea>
+        <button type="submit" class="btn">F1R3</button>
+    </form>
 
-        <div id="chat" class="box chaos-box">
-            <h2 class="blink glitch" data-text="FESTERS LIVE CHAT">💬 FESTERS LIVE CHAT 💬</h2>
-            <div id="chat-display" class="scroll-box"></div>
-            <form id="chat-form">
-                <input type="text" id="chat-input" placeholder="CH@T L1K3 A FR34K" autocomplete="off"><br>
-                <button type="submit" class="btn chaos-btn">BL@ST 🌩️</button>
-            </form>
-        </div>
+    <div id="chat-display" class="chaos-zone"></div>
+    <form id="chat-form">
+        <input type="text" id="chat-input" placeholder="CH@T D13" autocomplete="off">
+        <button type="submit" class="btn">BL@ST</button>
+    </form>
 
-        <button id="bobby-btn" class="bobby chaos-btn">B0BBY 💀</button>
-    </div>
+    <button id="bobby-btn" class="bobby">B0BBY</button>
 
     <div class="sad-zone">
-        <h2 class="sad-title glitch" data-text="ABANDONED WASTELAND">☩ ABANDONED WASTELAND ☩</h2>
-        <p class="sad-text">all is lost. bobby laughs at ur pain.</p>
-        <img src="bobby.jpg" alt="Sad Bobby" class="sad-bobby">
+        <h2 class="sad-title glitch" data-text="WASTELAND">☩ WASTELAND ☩</h2>
+        <p class="sad-text">bobby wins. u lose.</p>
+        <img src="bobby.jpg" alt="Bobby" class="sad-bobby">
     </div>
 
     <div class="cursor"></div>
+    <div class="bobby-spam"></div>
 
     <script>
-        // Random glitch effect
+        // Glitch text
         function glitchText(text) {
-            return text.split('').map(c => Math.random() > 0.8 ? c.toUpperCase() + String.fromCharCode(33 + Math.floor(Math.random() * 10)) : c).join('');
+            return text.split('').map(c => Math.random() > 0.7 ? c.toUpperCase() + String.fromCharCode(33 + Math.floor(Math.random() * 94)) : c).join('');
         }
 
         // Load Feedback
@@ -80,11 +73,11 @@
             loadChat();
         });
 
-        // Bobby Button - Fake IP
+        // Bobby Button
         document.getElementById('bobby-btn').addEventListener('click', () => {
             const fakeIP = `192.168.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
             const chat = JSON.parse(localStorage.getItem('chat') || '[]');
-            chat.push(`💀 B0BBY DR0P: IP ${fakeIP} 💀`);
+            chat.push(`💀 B0BBY ${fakeIP} 💀`);
             localStorage.setItem('chat', JSON.stringify(chat));
             loadChat();
         });
@@ -96,13 +89,15 @@
             document.querySelectorAll('.glitch').forEach(el => {
                 el.textContent = glitchText(el.getAttribute('data-text'));
             });
-        }, 500);
+            const spam = document.querySelector('.bobby-spam');
+            spam.innerHTML = Array(20).fill().map((_, i) => `<img src="bobby.jpg" class="bobby-clone" style="top: ${Math.random() * 100}%; left: ${Math.random() * 100}%; transform: rotate(${Math.random() * 360}deg); animation-delay: ${Math.random()}s;">`).join('');
+        }, 200);
 
         // Initial load
         loadFeedback();
         loadChat();
 
-        // Custom cursor
+        // Cursor
         document.addEventListener('mousemove', (e) => {
             const cursor = document.querySelector('.cursor');
             cursor.style.left = e.pageX + 'px';

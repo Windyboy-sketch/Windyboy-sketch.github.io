@@ -1,219 +1,213 @@
 body {
-    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff0000, #00ff00, #ff00ff);
-    background-size: 600% 600%;
-    animation: chaosGradient 3s ease infinite;
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff0000, #00ff00, #ffff00, #ff00ff);
+    background-size: 800% 800%;
+    animation: flashHell 0.1s infinite;
     font-family: 'Press Start 2P', cursive;
     color: #fff;
     margin: 0;
-    padding: 20px;
+    padding: 0;
     overflow: hidden;
 }
 
-@keyframes chaosGradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+@keyframes flashHell {
+    0% { background-position: 0% 50%; filter: brightness(100%); }
+    25% { background-position: 25% 75%; filter: brightness(150%); }
+    50% { background-position: 50% 25%; filter: brightness(200%); }
+    75% { background-position: 75% 50%; filter: brightness(150%); }
+    100% { background-position: 100% 75%; filter: brightness(100%); }
 }
 
 h1.glitch {
-    font-size: 40px;
+    font-size: 48px;
     text-align: center;
-    text-shadow: 0 0 15px #ff00ff, 0 0 30px #00ffff, 0 0 45px #ff0000;
-    animation: glitchPulse 0.5s infinite, shake 0.1s infinite;
+    text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #ff0000;
+    animation: glitchFlash 0.1s infinite, shake 0.05s infinite;
 }
 
 .marquee {
-    font-size: 24px;
+    font-size: 30px;
     color: #ffff00;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 10px;
-    border: 5px double #ff00ff;
-    margin-bottom: 20px;
-    animation: flicker 0.2s infinite;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-    transform: skew(2deg);
-}
-
-.chaos-box {
-    width: 45%;
-    float: left;
-    margin: 15px;
-    background: rgba(0, 0, 0, 0.7);
-    border: 6px solid #00ffff;
-    padding: 20px;
-    box-shadow: 0 0 20px #ff00ff, inset 0 0 10px #ff0000;
-    border-radius: 15px;
-    animation: shake 0.3s infinite;
-}
-
-#chat { float: right; }
-
-.scroll-box {
-    max-height: 300px;
-    overflow-y: auto;
     padding: 15px;
-    background: url('spin.gif') no-repeat center;
-    background-size: 60px;
-    border: 3px dashed #ffff00;
+    border: 8px double #ff00ff;
+    animation: flicker 0.05s infinite;
+}
+
+.chaos-zone {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 80%;
+    z-index: 1;
 }
 
 .glow {
-    text-shadow: 0 0 10px #ffff00, 0 0 20px #ff00ff, 0 0 30px #00ffff;
+    text-shadow: 0 0 15px #ffff00, 0 0 30px #ff00ff, 0 0 45px #00ffff;
 }
 
 .chaos-text {
-    animation: textGlitch 0.1s infinite;
+    position: relative;
+    font-size: 18px;
+    animation: textChaos 0.05s infinite;
 }
 
-@keyframes textGlitch {
-    0% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(2px, -2px); }
-    60% { transform: translate(-2px, -2px); }
-    80% { transform: translate(2px, 2px); }
-    100% { transform: translate(0); }
+@keyframes textChaos {
+    0% { transform: translate(0, 0) skew(0deg); opacity: 1; }
+    25% { transform: translate(-5px, 5px) skew(10deg); opacity: 0.5; }
+    50% { transform: translate(5px, -5px) skew(-10deg); opacity: 0.8; }
+    75% { transform: translate(-5px, -5px) skew(5deg); opacity: 0.6; }
+    100% { transform: translate(0, 0) skew(0deg); opacity: 1; }
 }
 
-.blink {
-    animation: blink 0.3s infinite;
-}
-
-@keyframes blink {
-    50% { opacity: 0; }
-}
-
-@keyframes glitchPulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05) skew(5deg); }
-    100% { transform: scale(1); }
+@keyframes glitchFlash {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1) skew(15deg); opacity: 0.3; }
+    100% { transform: scale(1); opacity: 1; }
 }
 
 @keyframes shake {
     0% { transform: translate(0, 0); }
-    25% { transform: translate(2px, -2px); }
-    50% { transform: translate(-2px, 2px); }
-    75% { transform: translate(2px, 2px); }
+    25% { transform: translate(5px, -5px); }
+    50% { transform: translate(-5px, 5px); }
+    75% { transform: translate(5px, 5px); }
     100% { transform: translate(0, 0); }
 }
 
 @keyframes flicker {
     0% { opacity: 1; }
-    50% { opacity: 0.7; }
+    50% { opacity: 0; }
     100% { opacity: 1; }
 }
 
 textarea, input {
-    background: rgba(255, 255, 255, 0.2);
+    background: none;
     color: #fff;
-    border: 4px solid #ff0000;
-    padding: 15px;
+    border: 6px solid #ff0000;
+    padding: 20px;
     font-family: 'Press Start 2P', cursive;
-    width: 100%;
-    box-sizing: border-box;
-    resize: none;
-    animation: inputFlicker 0.4s infinite;
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    z-index: 2;
+    animation: inputFlash 0.1s infinite;
 }
 
-@keyframes inputFlicker {
-    0% { border-color: #ff0000; }
-    50% { border-color: #00ffff; }
-    100% { border-color: #ff0000; }
+input { top: 70%; }
+
+@keyframes inputFlash {
+    0% { border-color: #ff0000; opacity: 1; }
+    33% { border-color: #00ffff; opacity: 0.5; }
+    66% { border-color: #ffff00; opacity: 0.8; }
+    100% { border-color: #ff0000; opacity: 1; }
 }
 
-.chaos-btn {
+.btn {
     background: #ff00ff;
     color: #fff;
-    border: 4px solid #00ffff;
-    padding: 15px 25px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: all 0.2s;
-    animation: buttonShake 0.3s infinite;
+    border: 6px solid #00ffff;
+    padding: 20px 30px;
+    font-size: 16px;
+    position: absolute;
+    top: 60%;
+    left: 80%;
+    z-index: 2;
+    animation: btnFlash 0.1s infinite;
 }
 
-.chaos-btn:hover {
-    background: #00ff00;
-    color: #ff00ff;
-    transform: rotate(10deg) scale(1.1);
+#chat-form .btn { top: 80%; }
+
+@keyframes btnFlash {
+    0% { background: #ff00ff; transform: rotate(0deg); }
+    33% { background: #00ff00; transform: rotate(15deg); }
+    66% { background: #ffff00; transform: rotate(-15deg); }
+    100% { background: #ff00ff; transform: rotate(0deg); }
 }
 
 .bobby {
     position: fixed;
-    bottom: 15px;
-    right: 15px;
+    bottom: 20px;
+    right: 20px;
     background: #ffff00;
     color: #ff0000;
-    border: 5px dashed #00ffff;
-    padding: 10px 15px;
-    font-size: 12px;
-    animation: insaneBounce 0.2s infinite;
+    border: 8px dashed #00ffff;
+    padding: 15px 20px;
+    font-size: 14px;
+    animation: bobbyFreak 0.1s infinite;
 }
 
-@keyframes insaneBounce {
-    0% { transform: translateY(0) rotate(0deg); }
-    25% { transform: translateY(-15px) rotate(5deg); }
-    50% { transform: translateY(0) rotate(-5deg); }
-    75% { transform: translateY(-10px) rotate(5deg); }
-    100% { transform: translateY(0) rotate(0deg); }
+@keyframes bobbyFreak {
+    0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+    25% { transform: translate(-10px, -10px) rotate(20deg); opacity: 0.5; }
+    50% { transform: translate(10px, 10px) rotate(-20deg); opacity: 0.8; }
+    75% { transform: translate(-10px, 10px) rotate(15deg); opacity: 0.3; }
+    100% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+}
+
+.bobby-clone {
+    position: absolute;
+    width: 50px;
+    z-index: 0;
+    animation: bobbySpam 0.2s infinite;
+}
+
+@keyframes bobbySpam {
+    0% { transform: scale(1) rotate(0deg); opacity: 1; }
+    50% { transform: scale(1.5) rotate(180deg); opacity: 0.2; }
+    100% { transform: scale(1) rotate(360deg); opacity: 1; }
 }
 
 .cursor {
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     background: url('spin.gif') no-repeat;
     background-size: contain;
     pointer-events: none;
     z-index: 9999;
-    transform: translate(-50%, -50%);
-    animation: spin 0.5s infinite linear;
+    animation: cursorFreak 0.1s infinite;
 }
 
-@keyframes spin {
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
+@keyframes cursorFreak {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(2) rotate(360deg); }
+    100% { transform: translate(-50%, -50%) scale(1); }
 }
 
 .sad-zone {
-    margin-top: 60px;
-    padding: 25px;
-    background: #111;
-    border: 6px solid #333;
-    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 30px;
     font-family: 'UnifrakturCook', cursive;
     color: #666;
-    animation: sadPulse 2s infinite;
+    animation: sadFlash 0.2s infinite;
 }
 
 .sad-title {
-    font-size: 32px;
-    text-shadow: 0 0 10px #333;
+    font-size: 36px;
+    text-shadow: 0 0 15px #333;
 }
 
 .sad-text {
-    font-size: 20px;
-    margin: 25px 0;
+    font-size: 24px;
+    margin: 30px 0;
 }
 
 .sad-bobby {
-    width: 250px;
-    border: 5px solid #444;
-    filter: grayscale(100%) brightness(50%);
-    animation: sadShake 0.5s infinite;
+    width: 300px;
+    border: 8px solid #444;
+    filter: grayscale(100%) brightness(30%);
+    animation: sadFreak 0.1s infinite;
 }
 
-@keyframes sadPulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.02); }
-    100% { transform: scale(1); }
+@keyframes sadFlash {
+    0% { background: #111; opacity: 1; }
+    50% { background: #333; opacity: 0.5; }
+    100% { background: #111; opacity: 1; }
 }
 
-@keyframes sadShake {
-    0% { transform: translate(0, 0); }
-    50% { transform: translate(-5px, 5px); }
-    100% { transform: translate(0, 0); }
+@keyframes sadFreak {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-10px, 10px) scale(1.2); }
+    100% { transform: translate(0, 0) scale(1); }
 }
