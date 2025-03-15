@@ -1,18 +1,12 @@
 body {
-    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff0000, #00ff00);
-    background-size: 400% 400%;
-    animation: gradient 5s ease infinite;
-    font-family: 'Press Start 2P', cursive;
-    color: #fff;
+    background: #1a1a1a; /* Dark gray stone */
+    font-family: 'UnifrakturCook', cursive;
+    color: #666; /* Dim, lifeless text */
     margin: 0;
     padding: 0;
     overflow: hidden;
-}
-
-@keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJElEQVQYV2NkYGD4z8DAwMjAwPCXgZGBoaknJCRk/P//PwM2sgN8sB8wLAAAAABJRU5ErkJggg=='); /* Subtle stone texture */
+    background-repeat: repeat;
 }
 
 .game-container {
@@ -22,17 +16,15 @@ body {
 
 h1.glitch {
     font-size: 36px;
-    text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff;
-    animation: glitch 0.5s infinite;
+    color: #8b0000; /* Dark red, blood-like */
+    text-shadow: 0 0 5px #ff4500, 0 0 10px #ff4500; /* Flickering torch glow */
+    animation: torchFlicker 1s infinite;
 }
 
-@keyframes glitch {
-    0% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(2px, -2px); }
-    60% { transform: translate(-2px, -2px); }
-    80% { transform: translate(2px, 2px); }
-    100% { transform: translate(0); }
+@keyframes torchFlicker {
+    0% { text-shadow: 0 0 5px #ff4500, 0 0 10px #ff4500; opacity: 1; }
+    50% { text-shadow: 0 0 3px #ff4500, 0 0 7px #ff4500; opacity: 0.8; }
+    100% { text-shadow: 0 0 5px #ff4500, 0 0 10px #ff4500; opacity: 1; }
 }
 
 #arena {
@@ -40,8 +32,9 @@ h1.glitch {
     width: 600px;
     height: 600px;
     margin: 20px auto;
-    border: 5px solid #ffff00;
-    background: rgba(0, 0, 0, 0.5);
+    border: 8px solid #333; /* Cold, rusted iron */
+    background: #222; /* Dark stone floor */
+    box-shadow: inset 0 0 20px #000, 0 0 15px #ff4500; /* Torchlight glow */
     overflow: hidden;
 }
 
@@ -53,6 +46,7 @@ h1.glitch {
     height: 100px;
     transition: all 0.2s ease-out;
     z-index: 1;
+    filter: brightness(70%) saturate(50%); /* Desolate, washed-out look */
 }
 
 .burger {
@@ -60,6 +54,7 @@ h1.glitch {
     width: 50px;
     height: 50px;
     z-index: 2;
+    filter: drop-shadow(0 0 5px #ff4500); /* Torchlight on burger */
 }
 
 .gore {
@@ -68,8 +63,16 @@ h1.glitch {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(255, 0, 0, 0.8), rgba(139, 0, 0, 0.5));
+    background: radial-gradient(circle at center, rgba(139, 0, 0, 0.9) 0%, rgba(255, 0, 0, 0.5) 50%, transparent 70%);
+    box-shadow: inset 0 0 50px #8b0000;
     z-index: 3;
+    animation: gorePulse 0.5s infinite;
+}
+
+@keyframes gorePulse {
+    0% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 0.8; transform: scale(1); }
 }
 
 .hidden {
@@ -78,29 +81,32 @@ h1.glitch {
 
 .stats {
     font-size: 24px;
+    color: #888;
+    text-shadow: 0 0 5px #ff4500;
     margin: 10px 0;
 }
 
 .message {
     font-size: 28px;
     color: #ff0000;
-    text-shadow: 0 0 10px #ffff00;
+    text-shadow: 0 0 10px #8b0000;
     margin: 20px 0;
 }
 
 .btn {
-    background: #ff00ff;
-    color: #fff;
-    border: 4px solid #00ffff;
+    background: #333;
+    color: #888;
+    border: 4px solid #ff4500;
     padding: 15px 30px;
     font-size: 18px;
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'UnifrakturCook', cursive;
     cursor: pointer;
-    animation: btnFlash 0.5s infinite;
+    box-shadow: 0 0 10px #ff4500;
+    transition: all 0.3s;
 }
 
-@keyframes btnFlash {
-    0% { background: #ff00ff; }
-    50% { background: #00ff00; }
-    100% { background: #ff00ff; }
+.btn:hover {
+    background: #ff4500;
+    color: #222;
+    box-shadow: 0 0 20px #ff4500;
 }

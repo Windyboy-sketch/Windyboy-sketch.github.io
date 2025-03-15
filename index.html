@@ -2,23 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>✨ FEED BOBBY ‘TIL HE POPS ✨</title>
+    <title>☩ FEED BOBBY ‘TIL HE POPS ☩</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="game-container">
-        <h1 class="glitch" data-text="FEED BOBBY ‘TIL HE POPS">✨ FEED BOBBY ‘TIL HE POPS ✨</h1>
+        <h1 class="glitch" data-text="FEED BOBBY ‘TIL HE POPS">☩ FEED BOBBY ‘TIL HE POPS ☩</h1>
         <div id="arena">
             <img id="bobby" src="bobby.jpg" alt="Bobby" class="bobby">
             <div id="burgers"></div>
             <div id="gore" class="gore hidden"></div>
         </div>
         <div class="stats">
-            <span id="burger-count">BURG3RS: 0</span>
+            <span id="burger-count">BURGERS: 0</span>
         </div>
         <div id="message" class="message"></div>
-        <button id="restart" class="btn hidden">R3ST@RT</button>
+        <button id="restart" class="btn hidden">RESTART</button>
     </div>
 
     <script>
@@ -32,13 +32,8 @@
 
         // Game state
         let burgerCount = 0;
-        let bobbySize = 100; // Starting width/height in px
+        let bobbySize = 100;
         let gameActive = true;
-
-        // Glitch text
-        function glitchText(text) {
-            return text.split('').map(c => Math.random() > 0.8 ? c.toUpperCase() + String.fromCharCode(33 + Math.floor(Math.random() * 10)) : c).join('');
-        }
 
         // Throw burger
         function throwBurger(x, y) {
@@ -51,9 +46,8 @@
             burger.style.top = y + 'px';
             burgersDiv.appendChild(burger);
 
-            // Animate burger to Bobby
             const bobbyRect = bobby.getBoundingClientRect();
-            const targetX = bobbyRect.left + bobbyRect.width / 2 - 25; // Center of Bobby
+            const targetX = bobbyRect.left + bobbyRect.width / 2 - 25;
             const targetY = bobbyRect.top + bobbyRect.height / 2 - 25;
             let posX = x;
             let posY = y;
@@ -76,8 +70,8 @@
         // Feed Bobby
         function feedBobby() {
             burgerCount++;
-            burgerCountDisplay.textContent = `BURG3RS: ${burgerCount}`;
-            bobbySize += 10; // Grow fatter
+            burgerCountDisplay.textContent = `BURGERS: ${burgerCount}`;
+            bobbySize += 10;
             bobby.style.width = bobbySize + 'px';
             bobby.style.height = bobbySize + 'px';
             bobby.style.left = `calc(50% - ${bobbySize / 2}px)`;
@@ -93,16 +87,16 @@
             gameActive = false;
             bobby.classList.add('hidden');
             gore.classList.remove('hidden');
-            message.textContent = "B0BBY P0PP3D! G0R3 F3ST!";
+            message.textContent = "BOBBY’S GUTS SPILL!";
             restartBtn.classList.remove('hidden');
-            burgersDiv.innerHTML = ''; // Clear burgers
+            burgersDiv.innerHTML = '';
         }
 
         // Restart game
         restartBtn.addEventListener('click', () => {
             burgerCount = 0;
             bobbySize = 100;
-            burgerCountDisplay.textContent = `BURG3RS: 0`;
+            burgerCountDisplay.textContent = `BURGERS: 0`;
             bobby.style.width = bobbySize + 'px';
             bobby.style.height = bobbySize + 'px';
             bobby.style.left = `calc(50% - ${bobbySize / 2}px)`;
@@ -117,17 +111,10 @@
         // Click to throw burger
         arena.addEventListener('click', (e) => {
             const rect = arena.getBoundingClientRect();
-            const x = e.clientX - rect.left - 25; // Adjust for burger size
+            const x = e.clientX - rect.left - 25;
             const y = e.clientY - rect.top - 25;
             throwBurger(x, y);
         });
-
-        // Glitch loop
-        setInterval(() => {
-            document.querySelectorAll('.glitch').forEach(el => {
-                el.textContent = glitchText(el.getAttribute('data-text'));
-            });
-        }, 200);
     </script>
 </body>
 </html>
