@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>✨ SCHIZOGRAMS & FESTERS LAND OF WONDER ✨</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=UnifrakturCook&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="glitch" data-text="SCHIZOGRAMS & FESTERS LAND OF WONDER">✨ SCHIZOGRAMS & FESTERS LAND OF WONDER ✨</h1>
+        <marquee behavior="scroll" direction="left" class="marquee">💿 CH@OS RUL3Z 💿 GL1TCH TH3 SYST3M 💿 FUCK IT ALL 💿</marquee>
+
+        <div id="feedback" class="box chaos-box">
+            <h2 class="blink glitch" data-text="SCHIZO FEEDBACK">📢 SCHIZO FEEDBACK 📢</h2>
+            <div id="feedback-display" class="scroll-box"></div>
+            <form id="feedback-form">
+                <textarea id="feedback-input" rows="4" placeholder="SCR3AM INTO TH3 V01D"></textarea><br>
+                <button type="submit" class="btn chaos-btn">F1R3 🔥</button>
+            </form>
+        </div>
+
+        <div id="chat" class="box chaos-box">
+            <h2 class="blink glitch" data-text="FESTERS LIVE CHAT">💬 FESTERS LIVE CHAT 💬</h2>
+            <div id="chat-display" class="scroll-box"></div>
+            <form id="chat-form">
+                <input type="text" id="chat-input" placeholder="CH@T L1K3 A FR34K" autocomplete="off"><br>
+                <button type="submit" class="btn chaos-btn">BL@ST 🌩️</button>
+            </form>
+        </div>
+
+        <button id="bobby-btn" class="bobby chaos-btn">B0BBY 💀</button>
+    </div>
+
+    <div class="sad-zone">
+        <h2 class="sad-title glitch" data-text="ABANDONED WASTELAND">☩ ABANDONED WASTELAND ☩</h2>
+        <p class="sad-text">all is lost. bobby laughs at ur pain.</p>
+        <img src="bobby.jpg" alt="Sad Bobby" class="sad-bobby">
+    </div>
+
+    <div class="cursor"></div>
+
+    <script>
+        // Random glitch effect
+        function glitchText(text) {
+            return text.split('').map(c => Math.random() > 0.8 ? c.toUpperCase() + String.fromCharCode(33 + Math.floor(Math.random() * 10)) : c).join('');
+        }
+
+        // Load Feedback
+        function loadFeedback() {
+            const feedback = JSON.parse(localStorage.getItem('feedback') || '[]');
+            document.getElementById('feedback-display').innerHTML = feedback.map(f => `<p class="glow chaos-text">${glitchText(f)}</p>`).join('');
+        }
+
+        // Load Chat
+        function loadChat() {
+            const chat = JSON.parse(localStorage.getItem('chat') || '[]');
+            document.getElementById('chat-display').innerHTML = chat.map(c => `<p class="glow chaos-text">${glitchText(c)}</p>`).join('');
+        }
+
+        // Submit Feedback
+        document.getElementById('feedback-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const feedbackInput = document.getElementById('feedback-input').value;
+            const feedback = JSON.parse(localStorage.getItem('feedback') || '[]');
+            feedback.push(feedbackInput);
+            localStorage.setItem('feedback', JSON.stringify(feedback));
+            document.getElementById('feedback-input').value = '';
+            loadFeedback();
+        });
+
+        // Submit Chat
+        document.getElementById('chat-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const message = document.getElementById('chat-input').value;
+            const chat = JSON.parse(localStorage.getItem('chat') || '[]');
+            chat.push(message);
+            localStorage.setItem('chat', JSON.stringify(chat));
+            document.getElementById('chat-input').value = '';
+            loadChat();
+        });
+
+        // Bobby Button - Fake IP
+        document.getElementById('bobby-btn').addEventListener('click', () => {
+            const fakeIP = `192.168.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
+            const chat = JSON.parse(localStorage.getItem('chat') || '[]');
+            chat.push(`💀 B0BBY DR0P: IP ${fakeIP} 💀`);
+            localStorage.setItem('chat', JSON.stringify(chat));
+            loadChat();
+        });
+
+        // Chaos loop
+        setInterval(() => {
+            loadFeedback();
+            loadChat();
+            document.querySelectorAll('.glitch').forEach(el => {
+                el.textContent = glitchText(el.getAttribute('data-text'));
+            });
+        }, 500);
+
+        // Initial load
+        loadFeedback();
+        loadChat();
+
+        // Custom cursor
+        document.addEventListener('mousemove', (e) => {
+            const cursor = document.querySelector('.cursor');
+            cursor.style.left = e.pageX + 'px';
+            cursor.style.top = e.pageY + 'px';
+        });
+    </script>
+</body>
+</html>

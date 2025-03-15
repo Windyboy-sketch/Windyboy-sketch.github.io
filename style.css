@@ -1,0 +1,219 @@
+body {
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff0000, #00ff00, #ff00ff);
+    background-size: 600% 600%;
+    animation: chaosGradient 3s ease infinite;
+    font-family: 'Press Start 2P', cursive;
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+    overflow: hidden;
+}
+
+@keyframes chaosGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+h1.glitch {
+    font-size: 40px;
+    text-align: center;
+    text-shadow: 0 0 15px #ff00ff, 0 0 30px #00ffff, 0 0 45px #ff0000;
+    animation: glitchPulse 0.5s infinite, shake 0.1s infinite;
+}
+
+.marquee {
+    font-size: 24px;
+    color: #ffff00;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border: 5px double #ff00ff;
+    margin-bottom: 20px;
+    animation: flicker 0.2s infinite;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    transform: skew(2deg);
+}
+
+.chaos-box {
+    width: 45%;
+    float: left;
+    margin: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 6px solid #00ffff;
+    padding: 20px;
+    box-shadow: 0 0 20px #ff00ff, inset 0 0 10px #ff0000;
+    border-radius: 15px;
+    animation: shake 0.3s infinite;
+}
+
+#chat { float: right; }
+
+.scroll-box {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 15px;
+    background: url('spin.gif') no-repeat center;
+    background-size: 60px;
+    border: 3px dashed #ffff00;
+}
+
+.glow {
+    text-shadow: 0 0 10px #ffff00, 0 0 20px #ff00ff, 0 0 30px #00ffff;
+}
+
+.chaos-text {
+    animation: textGlitch 0.1s infinite;
+}
+
+@keyframes textGlitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    60% { transform: translate(-2px, -2px); }
+    80% { transform: translate(2px, 2px); }
+    100% { transform: translate(0); }
+}
+
+.blink {
+    animation: blink 0.3s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+@keyframes glitchPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05) skew(5deg); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(2px, -2px); }
+    50% { transform: translate(-2px, 2px); }
+    75% { transform: translate(2px, 2px); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes flicker {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+textarea, input {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 4px solid #ff0000;
+    padding: 15px;
+    font-family: 'Press Start 2P', cursive;
+    width: 100%;
+    box-sizing: border-box;
+    resize: none;
+    animation: inputFlicker 0.4s infinite;
+}
+
+@keyframes inputFlicker {
+    0% { border-color: #ff0000; }
+    50% { border-color: #00ffff; }
+    100% { border-color: #ff0000; }
+}
+
+.chaos-btn {
+    background: #ff00ff;
+    color: #fff;
+    border: 4px solid #00ffff;
+    padding: 15px 25px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+    animation: buttonShake 0.3s infinite;
+}
+
+.chaos-btn:hover {
+    background: #00ff00;
+    color: #ff00ff;
+    transform: rotate(10deg) scale(1.1);
+}
+
+.bobby {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background: #ffff00;
+    color: #ff0000;
+    border: 5px dashed #00ffff;
+    padding: 10px 15px;
+    font-size: 12px;
+    animation: insaneBounce 0.2s infinite;
+}
+
+@keyframes insaneBounce {
+    0% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-15px) rotate(5deg); }
+    50% { transform: translateY(0) rotate(-5deg); }
+    75% { transform: translateY(-10px) rotate(5deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
+.cursor {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: url('spin.gif') no-repeat;
+    background-size: contain;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    animation: spin 0.5s infinite linear;
+}
+
+@keyframes spin {
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.sad-zone {
+    margin-top: 60px;
+    padding: 25px;
+    background: #111;
+    border: 6px solid #333;
+    text-align: center;
+    font-family: 'UnifrakturCook', cursive;
+    color: #666;
+    animation: sadPulse 2s infinite;
+}
+
+.sad-title {
+    font-size: 32px;
+    text-shadow: 0 0 10px #333;
+}
+
+.sad-text {
+    font-size: 20px;
+    margin: 25px 0;
+}
+
+.sad-bobby {
+    width: 250px;
+    border: 5px solid #444;
+    filter: grayscale(100%) brightness(50%);
+    animation: sadShake 0.5s infinite;
+}
+
+@keyframes sadPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+@keyframes sadShake {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(-5px, 5px); }
+    100% { transform: translate(0, 0); }
+}
