@@ -1,32 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        body {
-            cursor: none; /* Hide default cursor */
-        }
-        .spinning-star {
-            position: absolute;
-            pointer-events: none; /* Don’t block clicks */
-            font-size: 24px;
-            animation: spin 1s infinite linear;
-            z-index: 9999;
-        }
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-    </style>
-</head>
-<body>
-    <div class="spinning-star">✦</div>
-    <p>Move your mouse, fucker, and watch the star chase it!</p>
-    <script>
-        const star = document.querySelector('.spinning-star');
-        document.addEventListener('mousemove', (e) => {
-            star.style.left = `${e.pageX - 12}px`; /* Offset to center */
-            star.style.top = `${e.pageY - 12}px`;
-        });
-    </script>
-</body>
-</html>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calebs Website</title>
+  <style>
+    body {
+        background-image: url('https://www.shutterstock.com/image-vector/water-surface-magic-neon-glow-600nw-2483884465.jpg');
+    }
+  </style>
