@@ -98,37 +98,41 @@ marquee {
 
 .content {
     flex-grow: 1;
-    padding: 20px;
+    padding: 0;
     position: relative;
     overflow: hidden;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .centered-content {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h2 {
     font-size: 32px;
     text-shadow: 0 0 6px #00ff00;
     animation: flicker 2s infinite alternate;
+    margin: 0;
 }
 
 p {
     font-size: 20px;
-    max-width: 500px;
-    margin: 20px auto;
     text-shadow: 0 0 4px #00ff00;
     background-color: rgba(0, 0, 0, 0.8);
     padding: 15px;
     border: 2px solid #00ff00;
+    margin: 20px 0;
+    width: 500px;
+    text-align: center;
 }
 
 .glow {
-    margin: 20px auto;
-    display: block;
     width: 150px;
     height: 150px;
     image-rendering: pixelated;
