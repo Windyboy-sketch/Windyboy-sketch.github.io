@@ -1,42 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calebs Website</title>
-  <style>
-    body {
-      background-color: #1a1a1a;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 0;
-      padding: 50px;
-    }
-    h1 {
-        font-size: 48px;
-        text-shadow: 2px 2px 4px #ff00ff
+    <title>Caleb's Zone</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Caleb’s Website!</h1>
+    <p>Welcome</p>
+    <div class="doom-box">
+        <p>Now Playing: Electric Wizard - Dopethrone</p>
+        <p>Gear: Fuzz Pedal + Orange Amp</p>
+        <p>Last Jam: Desert Fest ‘24</p>
+        <p>Link: <a href="#">Caleb’s Riffs</a></p>
+    </div>
+    <p><a href="#">tunes</a> | <a href="#">gear</a> | <a href="#">smoke</a></p>
 
-    }
-    p {
-        font-size: 24x;
-    }
-  </style>
-  </head>
-  <body>
-    <h1>Test website</h1>
-    <p>Rainbow Cursor Text</p>
+    <audio autoplay loop>
+        <source src="https://www.royaltyfree-music.com/audio/free_downloads/stoner_doom_loop.mp3" type="audio/mpeg">
+    </audio>
 
     <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script>
-
     <script>
-        window.addEventListener("load", (event) => {
-          new cursoreffects.rainbowCursor({
-            length: 15, // Trail length—15 dots of chaos
-            colors: ["#ff0000", "#00ff00", "#0000ff", "#ffff00"], // Red, green, blue, yellow
-            size: 5 // Bigger dots for extra pizzazz
-          });
+        new cursoreffects.rainbowCursor({
+            length: 20,
+            colors: ["#2a1f3d", "#4a3b5e", "#6b577f", "#8a4a4a"],
+            size: 5
         });
-      </script>
-    </body>
-    </html>
+    </script>
+</body>
+</html>
