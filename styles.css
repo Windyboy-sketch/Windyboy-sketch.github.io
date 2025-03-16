@@ -1,0 +1,126 @@
+body {
+    background-color: #000000; /* Pure black void */
+    color: #00ff00; /* Hacker green */
+    font-family: 'VT323', monospace; /* Pixelated terminal font */
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(rgba(0, 255, 0, 0.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(0, 255, 0, 0.05) 1px, transparent 1px); /* Faint scanlines */
+    background-size: 100% 4px, 4px 100%;
+}
+
+.header {
+    background-color: #111111;
+    padding: 10px;
+    border-bottom: 4px double #00ff00; /* Double-line hacker border */
+    text-align: center;
+}
+
+h1 {
+    font-size: 40px;
+    text-shadow: 0 0 8px #00ff00, 0 0 15px #00ff00; /* Neon glow */
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin: 0;
+    animation: glow 1.5s infinite alternate;
+}
+
+marquee {
+    font-size: 18px;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+.main {
+    display: flex;
+    min-height: 80vh;
+}
+
+.sidebar {
+    width: 180px;
+    background-color: #0a0a0a;
+    padding: 15px;
+    border-right: 4px dashed #00ff00; /* Dashed for that retro hack feel */
+}
+
+.sidebar h2 {
+    font-size: 24px;
+    text-align: center;
+    text-shadow: 0 0 6px #00ff00;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar a {
+    color: #00ff00;
+    text-decoration: underline;
+    font-size: 16px;
+}
+
+.sidebar a:hover {
+    text-shadow: 0 0 5px #00ff00;
+    color: #00ff00;
+}
+
+.gif {
+    margin-top: 15px;
+    image-rendering: pixelated;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 28px;
+    text-shadow: 0 0 6px #00ff00;
+    animation: flicker 2s infinite alternate;
+}
+
+p {
+    font-size: 18px;
+    max-width: 500px;
+    margin: 20px auto;
+    text-shadow: 0 0 4px #00ff00;
+    background-color: rgba(0, 0, 0, 0.8); /* Slight overlay for contrast */
+    padding: 10px;
+    border: 2px solid #00ff00;
+}
+
+.glow {
+    margin-top: 20px;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 0 5px #00ff00);
+}
+
+.footer {
+    background-color: #111111;
+    border-top: 4px double #00ff00;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    text-shadow: 0 0 3px #00ff00;
+}
+
+.footer img {
+    vertical-align: middle;
+}
+
+/* Glow animation */
+@keyframes glow {
+    from { text-shadow: 0 0 8px #00ff00, 0 0 15px #00ff00; }
+    to { text-shadow: 0 0 12px #00ff00, 0 0 20px #00ff00; }
+}
+
+/* Flicker animation */
+@keyframes flicker {
+    0% { opacity: 1; }
+    25% { opacity: 0.9; }
+    50% { opacity: 1; }
+    75% { opacity: 0.85; }
+    100% { opacity: 0.95; }
+}
