@@ -32,6 +32,7 @@
             </div>
             <div class="matrix-rain"></div>
             <div class="glitch-overlay"></div>
+            <div class="neon-border"></div>
         </div>
     </div>
     <div class="footer">
@@ -62,6 +63,10 @@
             span.style.animationDelay = Math.random() * 5 + "s";
             content.appendChild(span);
         }
+        const neonBorder = document.querySelector(".neon-border");
+        setInterval(() => {
+            neonBorder.style.borderColor = ["#00ff00", "#00cc00", "#009900"][Math.floor(Math.random() * 3)];
+        }, 500);
     </script>
 </body>
 </html>

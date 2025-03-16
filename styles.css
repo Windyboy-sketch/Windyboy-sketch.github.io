@@ -7,12 +7,16 @@ body {
     background-image: linear-gradient(rgba(0, 255, 0, 0.05) 1px, transparent 1px),
                       linear-gradient(90deg, rgba(0, 255, 0, 0.05) 1px, transparent 1px);
     background-size: 100% 4px, 4px 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 .header {
     background-color: #111111;
     padding: 10px;
     border-bottom: 4px double #00ff00;
+    text-align: center;
 }
 
 h1 {
@@ -21,7 +25,6 @@ h1 {
     letter-spacing: 6px;
     text-transform: uppercase;
     margin: 0 auto;
-    text-align: center;
     display: block;
     animation: glow 1.5s infinite alternate;
 }
@@ -35,7 +38,7 @@ marquee {
 
 .main {
     display: flex;
-    min-height: 80vh;
+    flex-grow: 1;
 }
 
 .sidebar {
@@ -98,13 +101,12 @@ marquee {
 
 .content {
     flex-grow: 1;
-    padding: 0;
     position: relative;
     overflow: hidden;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .centered-content {
@@ -204,6 +206,18 @@ p {
     font-size: 20px;
     opacity: 0.2;
     animation: glitch-shift 0.5s infinite reverse;
+}
+
+.neon-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 5px solid #00ff00;
+    box-shadow: 0 0 20px #00ff00;
+    pointer-events: none;
+    z-index: 2;
 }
 
 .footer {
