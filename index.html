@@ -6,6 +6,37 @@
   <title>Calebs Website</title>
   <style>
     body {
-        background-image: url('https://www.shutterstock.com/image-vector/water-surface-magic-neon-glow-600nw-2483884465.jpg');
+      background-color: #1a1a1a;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 50px;
+    }
+    h1 {
+        font-size: 48px;
+        text-shadow: 2px 2px 4px #ff00ff
+
+    }
+    p {
+        font-size: 24x;
     }
   </style>
+  </head>
+  <body>
+    <h1>Test website</h1>
+    <p>Rainbow Cursor Text</p>
+
+    <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script>
+
+    <script>
+        window.addEventListener("load", (event) => {
+          new cursoreffects.rainbowCursor({
+            length: 15, // Trail length—15 dots of chaos
+            colors: ["#ff0000", "#00ff00", "#0000ff", "#ffff00"], // Red, green, blue, yellow
+            size: 5 // Bigger dots for extra pizzazz
+          });
+        });
+      </script>
+    </body>
+    </html>
