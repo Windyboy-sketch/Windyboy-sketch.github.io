@@ -1,119 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>☩ FEED BOBBY ‘TIL HE POPS ☩</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook&display=swap" rel="stylesheet">
+    <style>
+        body {
+            cursor: none; /* Hide default cursor */
+        }
+        .spinning-star {
+            position: absolute;
+            pointer-events: none; /* Don’t block clicks */
+            font-size: 24px;
+            animation: spin 1s infinite linear;
+            z-index: 9999;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
-    <div class="game-container">
-        <h1 class="glitch" data-text="FEED BOBBY ‘TIL HE POPS">☩ FEED BOBBY ‘TIL HE POPS ☩</h1>
-        <div id="arena">
-            <img id="bobby" src="bobby.jpg" alt="Bobby" class="bobby">
-            <div id="burgers"></div>
-            <div id="gore" class="gore hidden"></div>
-        </div>
-        <div class="stats">
-            <span id="burger-count">BURGERS: 0</span>
-        </div>
-        <div id="message" class="message"></div>
-        <button id="restart" class="btn hidden">RESTART</button>
-    </div>
-
+    <div class="spinning-star">✦</div>
+    <p>Move your mouse, fucker, and watch the star chase it!</p>
     <script>
-        const arena = document.getElementById('arena');
-        const bobby = document.getElementById('bobby');
-        const burgersDiv = document.getElementById('burgers');
-        const gore = document.getElementById('gore');
-        const burgerCountDisplay = document.getElementById('burger-count');
-        const message = document.getElementById('message');
-        const restartBtn = document.getElementById('restart');
-
-        // Game state
-        let burgerCount = 0;
-        let bobbySize = 100;
-        let gameActive = true;
-
-        // Throw burger
-        function throwBurger(x, y) {
-            if (!gameActive) return;
-
-            const burger = document.createElement('img');
-            burger.src = 'burger.png';
-            burger.className = 'burger';
-            burger.style.left = x + 'px';
-            burger.style.top = y + 'px';
-            burgersDiv.appendChild(burger);
-
-            const bobbyRect = bobby.getBoundingClientRect();
-            const targetX = bobbyRect.left + bobbyRect.width / 2 - 25;
-            const targetY = bobbyRect.top + bobbyRect.height / 2 - 25;
-            let posX = x;
-            let posY = y;
-
-            function animateBurger() {
-                if (Math.abs(posX - targetX) > 5 || Math.abs(posY - targetY) > 5) {
-                    posX += (targetX - posX) * 0.1;
-                    posY += (targetY - posY) * 0.1;
-                    burger.style.left = posX + 'px';
-                    burger.style.top = posY + 'px';
-                    requestAnimationFrame(animateBurger);
-                } else {
-                    burgersDiv.removeChild(burger);
-                    feedBobby();
-                }
-            }
-            animateBurger();
-        }
-
-        // Feed Bobby
-        function feedBobby() {
-            burgerCount++;
-            burgerCountDisplay.textContent = `BURGERS: ${burgerCount}`;
-            bobbySize += 10;
-            bobby.style.width = bobbySize + 'px';
-            bobby.style.height = bobbySize + 'px';
-            bobby.style.left = `calc(50% - ${bobbySize / 2}px)`;
-            bobby.style.top = `calc(50% - ${bobbySize / 2}px)`;
-
-            if (burgerCount >= 50) {
-                explodeBobby();
-            }
-        }
-
-        // Explode Bobby
-        function explodeBobby() {
-            gameActive = false;
-            bobby.classList.add('hidden');
-            gore.classList.remove('hidden');
-            message.textContent = "BOBBY’S GUTS SPILL!";
-            restartBtn.classList.remove('hidden');
-            burgersDiv.innerHTML = '';
-        }
-
-        // Restart game
-        restartBtn.addEventListener('click', () => {
-            burgerCount = 0;
-            bobbySize = 100;
-            burgerCountDisplay.textContent = `BURGERS: 0`;
-            bobby.style.width = bobbySize + 'px';
-            bobby.style.height = bobbySize + 'px';
-            bobby.style.left = `calc(50% - ${bobbySize / 2}px)`;
-            bobby.style.top = `calc(50% - ${bobbySize / 2}px)`;
-            bobby.classList.remove('hidden');
-            gore.classList.add('hidden');
-            message.textContent = '';
-            restartBtn.classList.add('hidden');
-            gameActive = true;
-        });
-
-        // Click to throw burger
-        arena.addEventListener('click', (e) => {
-            const rect = arena.getBoundingClientRect();
-            const x = e.clientX - rect.left - 25;
-            const y = e.clientY - rect.top - 25;
-            throwBurger(x, y);
+        const star = document.querySelector('.spinning-star');
+        document.addEventListener('mousemove', (e) => {
+            star.style.left = `${e.pageX - 12}px`; /* Offset to center */
+            star.style.top = `${e.pageY - 12}px`;
         });
     </script>
 </body>
