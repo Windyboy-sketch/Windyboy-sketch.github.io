@@ -10,6 +10,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    overflow: hidden; /* Kill the scrollbar twitch */
 }
 
 .header {
@@ -17,6 +18,7 @@ body {
     padding: 10px;
     border-bottom: 4px double #00ff00;
     text-align: center;
+    flex-shrink: 0; /* Don’t let it shrink */
 }
 
 h1 {
@@ -39,6 +41,8 @@ marquee {
 .main {
     display: flex;
     flex-grow: 1;
+    overflow: hidden; /* Contain the madness */
+    height: calc(100vh - 100px); /* Adjust for header/footer */
 }
 
 .sidebar {
@@ -46,6 +50,7 @@ marquee {
     background-color: #0a0a0a;
     padding: 15px;
     border-right: 4px dashed #00ff00;
+    flex-shrink: 0; /* Keep it steady */
 }
 
 .sidebar h2 {
@@ -105,7 +110,7 @@ marquee {
 .content {
     flex-grow: 1;
     position: relative;
-    overflow: hidden;
+    overflow: hidden; /* No overflow here either */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -241,6 +246,7 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex-shrink: 0; /* Keep it fixed */
 }
 
 .footer-text {
