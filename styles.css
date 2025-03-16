@@ -1,24 +1,24 @@
 body {
-    background-color: #000000; /* Pure black void */
-    color: #00ff00; /* Hacker green */
-    font-family: 'VT323', monospace; /* Pixelated terminal font */
+    background-color: #000000;
+    color: #00ff00;
+    font-family: 'VT323', monospace;
     margin: 0;
     padding: 0;
     background-image: linear-gradient(rgba(0, 255, 0, 0.05) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(0, 255, 0, 0.05) 1px, transparent 1px); /* Faint scanlines */
+                      linear-gradient(90deg, rgba(0, 255, 0, 0.05) 1px, transparent 1px);
     background-size: 100% 4px, 4px 100%;
 }
 
 .header {
     background-color: #111111;
     padding: 10px;
-    border-bottom: 4px double #00ff00; /* Double-line hacker border */
+    border-bottom: 4px double #00ff00;
     text-align: center;
 }
 
 h1 {
     font-size: 40px;
-    text-shadow: 0 0 8px #00ff00, 0 0 15px #00ff00; /* Neon glow */
+    text-shadow: 0 0 8px #00ff00, 0 0 15px #00ff00;
     letter-spacing: 6px;
     text-transform: uppercase;
     margin: 0;
@@ -39,7 +39,7 @@ marquee {
     width: 180px;
     background-color: #0a0a0a;
     padding: 15px;
-    border-right: 4px dashed #00ff00; /* Dashed for that retro hack feel */
+    border-right: 4px dashed #00ff00;
 }
 
 .sidebar h2 {
@@ -51,50 +51,112 @@ marquee {
 .sidebar ul {
     list-style: none;
     padding: 0;
+    text-align: center;
 }
 
 .sidebar a {
     color: #00ff00;
-    text-decoration: underline;
-    font-size: 16px;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    margin: 10px 0;
 }
 
-.sidebar a:hover {
-    text-shadow: 0 0 5px #00ff00;
-    color: #00ff00;
+.nav-button {
+    background-color: #111111;
+    padding: 8px 16px;
+    border: 2px solid #00ff00;
+    text-shadow: 0 0 4px #00ff00;
+    transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: #00ff00;
+    color: #000000;
+    text-shadow: none;
+    box-shadow: 0 0 10px #00ff00;
+    transform: scale(1.1);
 }
 
 .gif {
-    margin-top: 15px;
+    margin: 20px auto;
+    display: block;
+    width: 120px;
+    height: 120px;
     image-rendering: pixelated;
+}
+
+.blink {
+    margin-top: 20px;
+    font-size: 16px;
+    text-align: center;
+    animation: blink 0.5s infinite step-end;
 }
 
 .content {
     flex-grow: 1;
     padding: 20px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
 h2 {
-    font-size: 28px;
+    font-size: 32px;
     text-shadow: 0 0 6px #00ff00;
     animation: flicker 2s infinite alternate;
 }
 
 p {
-    font-size: 18px;
+    font-size: 20px;
     max-width: 500px;
     margin: 20px auto;
     text-shadow: 0 0 4px #00ff00;
-    background-color: rgba(0, 0, 0, 0.8); /* Slight overlay for contrast */
-    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 15px;
     border: 2px solid #00ff00;
 }
 
 .glow {
-    margin-top: 20px;
+    margin: 20px auto;
+    display: block;
+    width: 150px;
+    height: 150px;
     image-rendering: pixelated;
     filter: drop-shadow(0 0 5px #00ff00);
+}
+
+.matrix-rain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+    pointer-events: none;
+    z-index: -1;
+    animation: rain 10s infinite linear;
+}
+
+.matrix-rain::before {
+    content: "101010 1100 0011 0101 1001 1110 0000 1010";
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    color: #00ff00;
+    font-size: 16px;
+    opacity: 0.3;
+    animation: fall 5s infinite linear;
+}
+
+.matrix-drop {
+    position: absolute;
+    color: #00ff00;
+    font-size: 20px;
+    opacity: 0.7;
+    animation: drop 4s infinite linear;
 }
 
 .footer {
@@ -110,17 +172,38 @@ p {
     vertical-align: middle;
 }
 
-/* Glow animation */
+audio {
+    display: none;
+}
+
 @keyframes glow {
     from { text-shadow: 0 0 8px #00ff00, 0 0 15px #00ff00; }
     to { text-shadow: 0 0 12px #00ff00, 0 0 20px #00ff00; }
 }
 
-/* Flicker animation */
 @keyframes flicker {
     0% { opacity: 1; }
     25% { opacity: 0.9; }
     50% { opacity: 1; }
     75% { opacity: 0.85; }
     100% { opacity: 0.95; }
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+@keyframes rain {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100%; }
+}
+
+@keyframes fall {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100vh); }
+}
+
+@keyframes drop {
+    0% { transform: translateY(-100%); opacity: 0.7; }
+    100% { transform: translateY(100vh); opacity: 0; }
 }

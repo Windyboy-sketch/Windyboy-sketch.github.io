@@ -5,44 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CALEBS COOL WEBSITE</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> <!-- Hacker pixel font -->
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="header">
         <h1>CALEBS COOL WEBSITE</h1>
-        <marquee> My first site - last updated on March 15, 2025</marquee>
+        <marquee> My first site - last updated on March 15, 2025 - ENTER THE MATRIX</marquee>
     </div>
     <div class="main">
         <div class="sidebar">
             <h2>NAV</h2>
             <ul>
-                <li><a href="#">HOME</a></li>
-                <li><a href="#">LINKZ</a></li>
-                <li><a href="#">GUESTBOOK</a></li>
+                <li><a href="#" class="nav-button">HOME</a></li>
+                <li><a href="#" class="nav-button">LINKZ</a></li>
+                <li><a href="#" class="nav-button">GUESTBOOK</a></li>
+                <li><a href="#" class="nav-button">SECRETZ</a></li>
             </ul>
             <img src="https://cdn.discordapp.com/attachments/1244904098449457165/1350656189465235567/holoskull.gif?ex=67d78819&is=67d63699&hm=5dae99279dabfd5fe9c1cf30611ffd486cdcd281d6d1e31b02e8a4d25a1225f0&" alt="skull gif" class="gif">
+            <div class="blink">LOL NOOBZ OWNED</div>
         </div>
         <div class="content">
             <h2>Home Page</h2>
             <p>Welcome to my website</p>
             <img src="https://cdn.discordapp.com/attachments/1244904098449457165/1350656189465235567/holoskull.gif?ex=67d78819&is=67d63699&hm=5dae99279dabfd5fe9c1cf30611ffd486cdcd281d6d1e31b02e8a4d25a1225f0&" alt="glowing gif" class="glow">
+            <div class="matrix-rain"></div>
         </div>
     </div>
     <div class="footer">
-        <p>© 2000-2025 - CALEB OWNS - UNDER CONSTRUCTION</p>
+        <p>© 2000-2025 - CALEB OWNS - UNDER CONSTRUCTION FOREVER</p>
         <img src="https://via.placeholder.com/50x50?text=CODE" alt="code gif">
+        <audio autoplay loop>
+            <source src="https://www.myinstants.com/media/sounds/dial-up-modem-sounds.mp3" type="audio/mp3">
+        </audio>
     </div>
-
-    <!-- Hacker text effect script -->
     <script src="https://unpkg.com/cursor-effects@1.5.2/dist/browser.js"></script>
     <script>
         window.addEventListener("load", (event) => {
             new cursorEffects.fairyDustCursor({
-                colors: ["#00ff00", "#00cc00", "#009900"], // Green hacker shades
-                size: 4, // Small bits like code fragments
-                length: 20 // Decent trail length
+                colors: ["#00ff00", "#00cc00", "#009900"],
+                size: 4,
+                length: 20
             });
         });
+    </script>
+    <script>
+        const matrixChars = "0101 NEO TRINITY MORPHEUS CYPHER";
+        const content = document.querySelector(".content");
+        for (let i = 0; i < 50; i++) {
+            const span = document.createElement("span");
+            span.className = "matrix-drop";
+            span.textContent = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+            span.style.left = Math.random() * 100 + "%";
+            span.style.animationDelay = Math.random() * 5 + "s";
+            content.appendChild(span);
+        }
     </script>
 </body>
 </html>
